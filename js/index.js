@@ -8,7 +8,7 @@ jQuery(function ($) {
         renderTodos();
     };
 
-    function renderTodos() {
+        function renderTodos() {
         list.empty();
         $.each(todos, function (i) {
             list.prepend(`
@@ -20,9 +20,14 @@ jQuery(function ($) {
             `);
             var tasks = JSON.stringify(todos);
             window.localStorage.setItem('todos', tasks);
-            var tasksViev = JSON.parse(window.localStorage.getItem('todos'));
         });
     };
+
+    $(document).ready(function() {
+        var tasksViev = JSON.parse(window.localStorage.getItem('todos'));
+        todos.push(tasksViev);
+        renderTodos();
+    });
 
     function removeTodo(index) {
         todos.splice(index, 1);
